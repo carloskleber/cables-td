@@ -1,1 +1,21 @@
 .history/
+cablegen/.cache
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+
+# Virtualenv
+venv/
+.env/
+
+# Tool caches
+.cache/
+.pytest_cache/
+.mypy_cache/
+
+# Build
+build/
+dist/
+*.egg-info/
