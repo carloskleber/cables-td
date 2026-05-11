@@ -1,0 +1,158 @@
+{
+  "folders": [
+    {
+      "name": "cables-td",
+      "path": "."
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/__pycache__": true,
+      "**/*.pyc": true,
+      "**/.pytest_cache": true,
+      "**/.mypy_cache": true,
+      "**/.cache": true,
+      "cablegen/.cache": true,
+      "build": true,
+      "dist": true
+    },
+    "search.exclude": {
+      "**/__pycache__": true,
+      "**/.pytest_cache": true,
+      "**/.mypy_cache": true,
+      "**/.cache": true,
+      "cablegen/.cache": true,
+      "build": true,
+      "dist": true
+    },
+    "python.analysis.extraPaths": [
+      "${workspaceFolder}"
+    ],
+    "python.analysis.typeCheckingMode": "basic",
+    "python.testing.pytestEnabled": false,
+    "python.testing.unittestEnabled": false,
+    "terminal.integrated.cwd": "${workspaceFolder}",
+    "terminal.integrated.env.windows": {
+      "PYTHONPATH": "${workspaceFolder}"
+    },
+    "markdown.preview.breaks": false,
+    "markdown.validate.enabled": true,
+    "editor.rulers": [
+      88,
+      120
+    ],
+    "editor.formatOnSave": true,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true
+  },
+  "extensions": {
+    "recommendations": [
+      "ms-python.python",
+      "ms-python.vscode-pylance",
+      "DavidAnson.vscode-markdownlint",
+      "yzhang.markdown-all-in-one"
+    ]
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Python: install requirements",
+        "type": "shell",
+        "command": "python",
+        "args": [
+          "-m",
+          "pip",
+          "install",
+          "-r",
+          "requirements.txt"
+        ],
+        "group": "build",
+        "problemMatcher": []
+      },
+      {
+        "label": "Cablegen: generate Markdown",
+        "type": "shell",
+        "command": "python",
+        "args": [
+          "-m",
+          "cablegen"
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Cablegen: dry run",
+        "type": "shell",
+        "command": "python",
+        "args": [
+          "-m",
+          "cablegen",
+          "--dry-run"
+        ],
+        "group": "test",
+        "problemMatcher": []
+      },
+      {
+        "label": "Cablegen: list families and sources",
+        "type": "shell",
+        "command": "python",
+        "args": [
+          "-m",
+          "cablegen",
+          "--list"
+        ],
+        "problemMatcher": []
+      },
+      {
+        "label": "Cablegen: refresh source data",
+        "type": "shell",
+        "command": "python",
+        "args": [
+          "-m",
+          "cablegen",
+          "--refresh"
+        ],
+        "problemMatcher": []
+      }
+    ]
+  },
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Cablegen: generate Markdown",
+        "type": "python",
+        "request": "launch",
+        "module": "cablegen",
+        "cwd": "${workspaceFolder}",
+        "justMyCode": true
+      },
+      {
+        "name": "Cablegen: dry run",
+        "type": "python",
+        "request": "launch",
+        "module": "cablegen",
+        "args": [
+          "--dry-run"
+        ],
+        "cwd": "${workspaceFolder}",
+        "justMyCode": true
+      },
+      {
+        "name": "Cablegen: refresh source data",
+        "type": "python",
+        "request": "launch",
+        "module": "cablegen",
+        "args": [
+          "--refresh"
+        ],
+        "cwd": "${workspaceFolder}",
+        "justMyCode": true
+      }
+    ]
+  }
+}
